@@ -1,10 +1,9 @@
 "use strict";
 
-var GameState = function(game) { }
+var GameState = function(game) {}
 
 var publicMethods = function() {
-    this.create = function() {
-    };
+  this.create = function() {};
 };
 
 var privateMethods = function() {};

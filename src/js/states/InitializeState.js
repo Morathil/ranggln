@@ -4,18 +4,18 @@ var MenuState = require("./MenuState");
 var StatesConfig = require("./States");
 
 var InitializeState = function(game) {
-	this.game = game;
+  this.game = game;
 }
 
 var publicMethods = function() {
-    this.preload = function() {
-		this.game.load.spritesheet('button', '../img/flixel-button.png', 80, 20);
-      	this.game.load.image('einstein', '../img/logo.png');
-    };
+  this.preload = function() {
+    this.game.load.spritesheet('button', '../img/flixel-button.png', 80, 20);
+    this.game.load.image('einstein', '../img/logo.png');
+  };
 
-    this.create = function() {
-		this.game.state.start(StatesConfig.MENU_STATE_ID);
-    };
+  this.create = function() {
+    this.game.state.start(StatesConfig.MENU_STATE_ID);
+  };
 };
 
 var privateMethods = function() {};

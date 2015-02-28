@@ -13,7 +13,7 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS,
 
 window.Game = game;
 window.onresize = function() {
-	Game.scale.setGameSize(window.innerWidth, window.innerHeight);
+  Game.scale.setGameSize(window.innerWidth, window.innerHeight);
 }
 
 game.state.add(StatesConfig.INITIALIZE_STATE_ID, new InitializeState(game), true);

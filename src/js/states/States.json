@@ -1,7 +1,7 @@
 {
-	"INITIALIZE_STATE_ID": "initialize",
-    "SETTINGS_STATE_ID": "settings",
-    "MENU_STATE_ID": "menu",
-    "LOADING_STATE_ID": "loading",
-    "GAME_STATE_ID": "game"
+  "INITIALIZE_STATE_ID": "initialize",
+  "SETTINGS_STATE_ID": "settings",
+  "MENU_STATE_ID": "menu",
+  "LOADING_STATE_ID": "loading",
+  "GAME_STATE_ID": "game"
 }

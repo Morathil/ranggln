@@ -1,11 +1,11 @@
 "use strict";
 
-var LoadingState = function(game) { }
+var LoadingState = function(game) {}
 
 var publicMethods = function() {
-    this.create = function() {
+  this.create = function() {
 
-    };
+  };
 };
 
 var privateMethods = function() {};
