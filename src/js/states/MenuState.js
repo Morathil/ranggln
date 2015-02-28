@@ -8,10 +8,9 @@ var publicMethods = function() {
     };
 };
 
-var privateMethods = function() {
+var privateMethods = function() {};
 
-};
-
+publicMethods.call(MenuState.prototype);
 publicMethods.call(MenuState.prototype);
 
 module.exports = MenuState;

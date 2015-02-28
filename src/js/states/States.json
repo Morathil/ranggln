@@ -1,5 +1,6 @@
 {
 		"INITIALIZE_STATE_ID": "initialize",
     "MENU_STATE_ID": "menu",
-    "LOADING_STATE_ID": "loading"
+    "LOADING_STATE_ID": "loading",
+    "GAME_STATE_ID": "game"
 }

@@ -17,10 +17,9 @@ var publicMethods = function() {
     };
 };
 
-var privateMethods = function() {
+var privateMethods = function() {};
 
-};
-
+privateMethods.call(InitializeState.prototype);
 publicMethods.call(InitializeState.prototype);
 
 module.exports = InitializeState;

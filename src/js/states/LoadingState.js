@@ -8,10 +8,9 @@ var publicMethods = function() {
     };
 };
 
-var privateMethods = function() {
+var privateMethods = function() {};
 
-};
-
+privateMethods.call(LoadingState.prototype);
 publicMethods.call(LoadingState.prototype);
 
 module.exports = LoadingState;
