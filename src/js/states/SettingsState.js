@@ -2,7 +2,7 @@
 
 var StateIds = require("./States");
 
-var MenuState = function(game) {}
+var SettingsSate = function(game) {}
 
 var publicMethods = function() {
   this.preload = function() {
@@ -22,6 +22,7 @@ var privateMethods = function() {
 
 };
 
-publicMethods.call(MenuState.prototype);
+publicMethods.call(SettingsSate.prototype);
+publicMethods.call(SettingsSate.prototype);
 
-module.exports = MenuState;
+module.exports = SettingsSate;
