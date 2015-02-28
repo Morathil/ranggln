@@ -20,4 +20,4 @@ game.state.add(StateIds.INITIALIZE_STATE_ID, new InitializeState(game), true);
 game.state.add(StateIds.MENU_STATE_ID, new MenuState(game));
 game.state.add(StateIds.SETTINGS_STATE_ID, new SettingsState(game));
 game.state.add(StateIds.LOADING_STATE_ID, new LoadingState(game));
-game.state.add(StateIds.LOADING_STATE_ID, new GameState(game));
+game.state.add(StateIds.GAME_STATE_ID, new GameState(game));
