@@ -2,8 +2,12 @@
 
 var LocalStorageUtils = require("./utils/LocalStorageUtils");
 
+var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-var game = new Phaser.Game(1024, 768, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+window.Game = game;
+window.onresize = function() {
+	Game.scale.setGameSize(window.innerWidth, window.innerHeight);
+}
 
 function preload() {
     game.load.image('einstein', '../img/logo.png');
