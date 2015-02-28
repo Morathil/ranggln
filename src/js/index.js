@@ -1,18 +1,16 @@
 "use strict";
 
 var LocalStorageUtils = require("./utils/LocalStorageUtils");
+var StatesConfig = require("./states/States");
+var MenuState = require("./states/MenuState");
 
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example');
 
 window.Game = game;
 window.onresize = function() {
 	Game.scale.setGameSize(window.innerWidth, window.innerHeight);
 }
 
-function preload() {
-    game.load.image('einstein', '../img/logo.png');
-}
+game.state.add(StatesConfig.MENU_STATE_ID, new MenuState(game));
 
-function create() {
-    game.add.sprite(100, 100, 'einstein');
-}
+game.state.start(StatesConfig.MENU_STATE_ID);
