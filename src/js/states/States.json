@@ -1,3 +1,5 @@
 {
-    "MENU_STATE_ID": "menu"
+		"INITIALIZE_STATE_ID": "initialize",
+    "MENU_STATE_ID": "menu",
+    "LOADING_STATE_ID": "loading"
 }

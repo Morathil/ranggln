@@ -3,10 +3,6 @@
 var MenuState = function(game) { }
 
 var publicMethods = function() {
-    this.preload = function() {
-        this.game.load.image('einstein', '../img/logo.png');
-    };
-
     this.create = function() {
         this.game.add.sprite(100, 100, 'einstein');
     };
