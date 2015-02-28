@@ -9,11 +9,12 @@ var InitializeState = function(game) {
 
 var publicMethods = function() {
     this.preload = function() {
-      this.game.load.image('einstein', '../img/logo.png');
+		this.game.load.spritesheet('button', '../img/flixel-button.png', 80, 20);
+      	this.game.load.image('einstein', '../img/logo.png');
     };
 
     this.create = function() {
-			this.game.state.start(StatesConfig.MENU_STATE_ID);
+		this.game.state.start(StatesConfig.MENU_STATE_ID);
     };
 };
 

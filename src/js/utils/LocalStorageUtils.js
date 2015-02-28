@@ -30,4 +30,3 @@ var privateMethods = function() {
 publicMethods.call(LocalStorageUtils.prototype);
 
 module.exports = new LocalStorageUtils();
-
