@@ -1,0 +1,39 @@
+{
+  "name": "ranggln",
+  "version": "0.0.1",
+  "description": "Playground",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "chalk": "^1.0.0",
+    "debug": "^2.1.1",
+    "gulp": "^3.8.11",
+    "gulp-concat": "*",
+    "gulp-jshint": "*",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-util": "^3.0.4",
+    "lodash.assign": "^3.0.0",
+    "phaser": "^2.2.2",
+    "through": "^2.3.6",
+    "tiny-lr": "^0.1.5",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Morathil/ranggln"
+  },
+  "keywords": [
+    "cordova",
+    "phaser",
+    "android"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Morathil/ranggln/issues"
+  },
+  "homepage": "https://github.com/Morathil/ranggln"
+}
