@@ -1,7 +1,7 @@
 "use strict";
 
 var LocalStorageUtils = require("./utils/LocalStorageUtils");
-var StatesConfig = require("./states/States");
+var StateIds = require("./states/States");
 
 var InitializeState = require("./states/InitializeState");
 var MenuState = require("./states/MenuState");
@@ -16,10 +16,10 @@ window.onresize = function() {
 	Game.scale.setGameSize(window.innerWidth, window.innerHeight);
 }
 
-game.state.add(StatesConfig.INITIALIZE_STATE_ID, new InitializeState(game), true);
-game.state.add(StatesConfig.MENU_STATE_ID, new MenuState(game));
-game.state.add(StatesConfig.SETTINGS_STATE_ID, new SettingsState(game));
-game.state.add(StatesConfig.LOADING_STATE_ID, new LoadingState(game));
-game.state.add(StatesConfig.LOADING_STATE_ID, new GameState(game));
+game.state.add(StateIds.INITIALIZE_STATE_ID, new InitializeState(game), true);
+game.state.add(StateIds.MENU_STATE_ID, new MenuState(game));
+game.state.add(StateIds.SETTINGS_STATE_ID, new SettingsState(game));
+game.state.add(StateIds.LOADING_STATE_ID, new LoadingState(game));
+game.state.add(StateIds.LOADING_STATE_ID, new GameState(game));
 
-game.state.start(StatesConfig.INITIALIZE_STATE_ID);
+game.state.start(StateIds.INITIALIZE_STATE_ID);

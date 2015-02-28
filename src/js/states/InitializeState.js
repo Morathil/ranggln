@@ -1,7 +1,7 @@
 "use strict";
 
 var MenuState = require("./MenuState");
-var StatesConfig = require("./States");
+var StateIds = require("./States");
 
 var InitializeState = function(game) {
 	this.game = game;
@@ -14,7 +14,7 @@ var publicMethods = function() {
     };
 
     this.create = function() {
-		this.game.state.start(StatesConfig.MENU_STATE_ID);
+		this.game.state.start(StateIds.MENU_STATE_ID);
     };
 };
 
