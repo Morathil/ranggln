@@ -3,6 +3,7 @@ var plugins = require("gulp-load-plugins")();
 var browserify = require("browserify");
 var source = require("vinyl-source-stream");
 var path = require('path');
+var connect = require("gulp-connect");
  
 var paths = {
 	scripts: ["src/js/**/*"],
@@ -32,10 +33,12 @@ gulp.task("browserify", function() {
 	});
 
 	bundleStream.pipe(source("index.js"))
-		.pipe(gulp.dest("www/js"));
+		.pipe(gulp.dest("www/js"))
+		.pipe(connect.reload());
 });
 
 gulp.task("default", ["vendor", "statics", "browserify"], function() {
+	connect.server({ root: "www", livereload: true, port: 9000 });
 	gulp.watch(paths.scripts, ["vendor", "statics", "browserify"]);
 	gulp.watch(paths.vendor, ["vendor", "statics", "browserify"]);
 	gulp.watch(paths.statics, ["vendor", "statics", "browserify"]);
