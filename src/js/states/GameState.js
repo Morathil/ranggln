@@ -21,6 +21,9 @@ var publicMethods = function() {
     this.background_01 = this.game.add.sprite(0, 0, 'background_01');
     this.background_02 = this.game.add.sprite(0, 0, 'background_02');
 
+    this._collisionGroupTanks = this.game.add.group();
+    this._collisionGroupHelicopters = this.game.add.group();
+
     this._resizeBackground();
 
     new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
@@ -39,14 +42,6 @@ var publicMethods = function() {
       this, 0, 1, 2);
   };
 
-  this.update = function() {
-
-  };
-
-  this.render = function() {
-
-  };
-
   this.resize = function() {
     Game.scale.setGameSize(window.innerWidth, window.innerHeight);
     this._resizeBackground();
@@ -57,6 +52,8 @@ var publicMethods = function() {
       var unit = this._units[i];
       unit.update();
     }
+    this.game.physics.arcade.collide(this._collisionGroupTanks);
+    this.game.physics.arcade.collide(this._collisionGroupHelicopters);
   };
 
   this.render = function() {
@@ -69,13 +66,18 @@ var publicMethods = function() {
 
 var privateMethods = function() {
   this._addUnit = function(type) {
+    var unit;
     switch (type) {
       case "tank":
-        this._units.push(new TankUnit(this.game));
+        unit = new TankUnit(this.game);
+        this._units.push(unit);
+        this._collisionGroupTanks.add(unit._baseSprite)
         break;
 
       case "helicopter":
-        this._units.push(new HelicopterUnit(this.game));
+        unit = new HelicopterUnit(this.game);
+        this._units.push(unit);
+        this._collisionGroupHelicopters.add(unit._baseSprite)
         break;
     }
   };

@@ -43,8 +43,12 @@ var privateMethods = function() {
 
   this._initAcradePhysics = function(sprite) {
     this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
+
     sprite.anchor.setTo(0.5, 0.5);
+
+    sprite.body.enable = true;
     sprite.body.allowRotation = false;
+    sprite.body.collideWorldBounds = true;;
   };
 
   this._addInputListener = function(sprite) {
