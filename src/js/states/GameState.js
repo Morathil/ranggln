@@ -9,6 +9,8 @@ var TankUnit = require("./../units/TankUnit");
 var GameState = function(game) {
   this.background_01 = null;
   this.background_02 = null;
+  this._doDragToMove = false;
+  this._units = [];
 }
 
 var publicMethods = function() {
@@ -18,6 +20,7 @@ var publicMethods = function() {
 
     this._resizeBackground();
 
+    this.line = new Phaser.Line(0, 0, 0, 0);
     new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
@@ -33,16 +36,23 @@ var publicMethods = function() {
     Game.scale.setGameSize(window.innerWidth, window.innerHeight);
     this._resizeBackground();
   };
+
+  this.update = function() {
+    if (this.game.input.activePointer.isDown) {
+      if (this._doDragToMove) {
+        this.line.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
+      }
+    }
+    for (var i = 0; i < this._units.length; i++) {
+      var unit = this._units[i];
+      unit.move();
+    }
+  };
 };
 
 var privateMethods = function() {
   this._addUnit = function() {
-    console.log(new TankUnit());
-    var tank = this.game.add.group();
-    tank.x = 0;
-    tank.y = this.game.height * 0.81;
-    tank.create(0, 0, 'tank');
-    tank.create(10, 10, 'turret');
+    this._units.push(new TankUnit(this.game));
   };
 
   this._resizeBackground = function() {
