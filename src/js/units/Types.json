@@ -1,0 +1,5 @@
+{
+  "INVALID": -1,
+  "GROUND": 0,
+  "AIR": 1
+}

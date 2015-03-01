@@ -1,5 +1,7 @@
 "use strict";
 
+var Types = require("./Types");
+
 var BaseUnit = function(game) {
   privateMethods.call(this);
   publicMethods.call(this);
@@ -40,6 +42,7 @@ var privateMethods = function() {
     this._speed = 1;
     this._stealth = 0;
     this._fuel = 0;
+    this.type = Types.INVALID;
   };
 
   this._initUnit = function() {
