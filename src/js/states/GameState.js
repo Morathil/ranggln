@@ -5,6 +5,7 @@ var StateIds = require("./States");
 var TextButton = require("./../utils/TextButton");
 
 var TankUnit = require("./../units/TankUnit");
+var HelicopterUnit = require("./../units/HelicopterUnit");
 
 var GameState = function(game) {
   this.background_01 = null;
@@ -53,7 +54,7 @@ var publicMethods = function() {
 
 var privateMethods = function() {
   this._addUnit = function() {
-    this._units.push(new TankUnit(this.game));
+    this._units.push(new HelicopterUnit(this.game));
   };
 
   this._resizeBackground = function() {

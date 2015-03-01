@@ -2,73 +2,44 @@
 
 var Types = require("./Types");
 
-var BaseUnit = function(game) {
-  privateMethods.call(this);
-  publicMethods.call(this);
-
-  this.game = game;
-  this._initAttributes();
-  this._baseSprite = this._initBaseSprite();
-  this._weaponSprite = this._initWeaponSprite();
-
-  this._doDragToMove = false;
-}
+// ---- BASE UNIT ---- //
 
 var publicMethods = function() {
+  this.initSuper = function(game) {
+    this.game = game;
+    this._initAttributes();
+    this._baseSprite = this._initBaseSprite();
+    this._weaponSprite = this._initWeaponSprite();
+
+    this._doDragToMove = false;
+  };
+
   this.update = function() {
     this._move();
     this._updateWeaponPosition();
-
-    if (this.game.input.activePointer.isDown) {
-      if (this._doDragToMove) {
-        this._dragToMoveLine.start.set(this._baseSprite.x, this._baseSprite.y);
-        this._dragToMoveLine.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
-      }
-    }
+    this._drawDragToMoveLine();
   };
 
   this.render = function() {
     this.game.debug.geom(this._dragToMoveLine);
-    this.game.debug.lineInfo(this._dragToMoveLine, 32, 32);
-
-    this.game.debug.text("Drag the handles", 32, 550);
   };
 };
 
 var privateMethods = function() {
   this._initAttributes = function() {
-    this._moveToX = null;
-    this._moveToY = null;
-    this._strength = 0;
-    this._size = 0;
-    this._ecm = 0;
-    this._optics = 0;
-    this._speed = 60;
-    this._stealth = 0;
-    this._fuel = 0;
-    this.type = Types.INVALID;
+    // IMPLEMENT IN SUB CLASS
+  };
+  this._initBaseSprite = function() {
+    // IMPLEMENT IN SUB CLASS
   };
 
-  this._initBaseSprite = function() {
-    var x = 0;
-    var y = this.game.height * 0.81;
-    var tank = this.game.add.sprite(x, y, 'tank');
-
-    this._dragToMoveLine = new Phaser.Line(0, 0, 0, 0);
-
-    this._initAcradePhysics(tank);
-    this._addInputListener(tank);
-
-    return tank;
-  }
-
   this._initWeaponSprite = function() {
-    var x = this._baseSprite.x;
-    var y = this._baseSprite.y;
-    var weapon = this.game.add.sprite(x, y, 'turret');
-    weapon.anchor.setTo(0.5, 0.5);
-    return weapon;
-  }
+    // IMPLEMENT IN SUB CLASS
+  };
+
+  this._updateWeaponPosition = function() {
+    // IMPLEMENT IN SUB CLASS
+  };
 
   this._initAcradePhysics = function(sprite) {
     this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
@@ -109,12 +80,17 @@ var privateMethods = function() {
     }
   };
 
-  this._updateWeaponPosition = function() {
-    this._weaponSprite.x = this._baseSprite.x;
-    this._weaponSprite.y = this._baseSprite.y;
-    this._weaponSprite.rotation = this._baseSprite.rotation;
+  this._drawDragToMoveLine = function() {
+    if (this.game.input.activePointer.isDown) {
+      if (this._doDragToMove) {
+        this._dragToMoveLine.start.set(this._baseSprite.x, this._baseSprite.y);
+        this._dragToMoveLine.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
+      }
+    }
   };
 };
 
-
-module.exports = BaseUnit;
+module.exports = {
+  privateMethods: privateMethods,
+  publicMethods: publicMethods
+}

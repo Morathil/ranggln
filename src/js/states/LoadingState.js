@@ -11,6 +11,7 @@ var publicMethods = function() {
   this.preload = function() {
     this.game.load.image('background_01', 'img/background_01.png');
     this.game.load.image('background_02', 'img/background_02.png');
+    this.game.load.image("helicopter", "img/helicopter.png");
     this.game.load.image("tank", "img/tank.png");
     this.game.load.image("turret", "img/turret.png");
     //  From http://glslsandbox.com/e#16133.0
