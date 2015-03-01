@@ -15,6 +15,7 @@ var GameState = function(game) {
 
 var publicMethods = function() {
   this.create = function() {
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.background_01 = this.game.add.sprite(0, 0, 'background_01');
     this.background_02 = this.game.add.sprite(0, 0, 'background_02');
 
