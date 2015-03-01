@@ -3,14 +3,29 @@
 var BaseUnit = require("./BaseUnit");
 var Types = require("./Types");
 
+var MachineGunWeapon = require("./../weapons/MachineGunWeapon");
+
 var HelicopterUnit = function(game) {
   this.initSuper(game);
   this.type = Types.GROUND;
+
+  this._initMachineGunWeapon();
 }
 
 var publicMethods = function() {};
 
 var privateMethods = function() {
+  this._initMachineGunWeapon = function() {
+    this._machineGunWeapon = new MachineGunWeapon(this.game);
+    this.game.input.onDown.add(
+      function(pointer) {
+        pointer.type = 0;
+        this._machineGunWeapon.shoot(pointer, {
+          position: this._weaponSprite.position
+        }, function() {});
+      }, this);
+  };
+
   this._initAttributes = function() {
     this._moveToX = null;
     this._moveToY = null;

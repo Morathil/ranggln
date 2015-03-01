@@ -28,14 +28,15 @@ var publicMethods = function() {
       },
       this, 0, 1, 2);
 
-    new TextButton(this.game, 'Spawn Tank', 'nokia', 12, 400, 370, 'button', function() {
-        this._addUnit();
+    new TextButton(this.game, 'Tank', 'nokia', 12, 400, 370, 'button', function() {
+        this._addUnit("tank");
       },
       this, 0, 1, 2);
 
-    // MachineGun Demo
-    //this.mg = new MachineGunWeapon(this.game);
-    //this.game.input.onDown.add(function(pointer) {pointer.type = 0;this.mg.shoot(pointer, {position: new Phaser.Point(0,0)}, function() {});}, this);
+    new TextButton(this.game, 'Helicopter', 'nokia', 12, 400, 340, 'button', function() {
+        this._addUnit("helicopter");
+      },
+      this, 0, 1, 2);
   };
 
   this.update = function() {
@@ -67,8 +68,16 @@ var publicMethods = function() {
 };
 
 var privateMethods = function() {
-  this._addUnit = function() {
-    this._units.push(new TankUnit(this.game));
+  this._addUnit = function(type) {
+    switch (type) {
+      case "tank":
+        this._units.push(new TankUnit(this.game));
+        break;
+
+      case "helicopter":
+        this._units.push(new HelicopterUnit(this.game));
+        break;
+    }
   };
 
   this._resizeBackground = function() {
