@@ -17,7 +17,7 @@ var BaseWeapon = function(game) {
   this._roundsPerMinute = 0;
   this._reloadTime = 0;
   this._accuracy = 0;
-  this._projectileVelocity = new Phaser.Point(0.0, 0.0);
+  this._projectileSpeed = 0;
 
   this._rangeGround = 0;
   this._rangeAir = 0;
@@ -38,7 +38,7 @@ var publicMethods = function() {
       callack(false); // false means that the magazines are empty
     }
   };
-  //this._shootProjectile = function() {console.log("fu");};
+
   this.shoot = function(enemy, shooter, callback) {
     var distance = Phaser.Point.distance(enemy.position, shooter.position);
     if((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
@@ -48,9 +48,9 @@ var publicMethods = function() {
       var that = this;
       setTimeout(function() {
         that._shootProjectile(enemy.position, shooter.position);
-        --this._rounds;
         callback(true);
       }, 60000 / this._roundsPerMinute);
+      --this._rounds;
     }
     else
     {
