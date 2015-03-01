@@ -2,6 +2,8 @@
 
 var StateIds = require("./States");
 
+var TextButton = require("./../utils/TextButton");
+
 var TankUnit = require("./../units/TankUnit");
 
 var GameState = function(game) {
@@ -21,7 +23,7 @@ var publicMethods = function() {
       },
       this, 0, 1, 2);
 
-    this.game.add.button(100, 100, 'button', function() {
+    new TextButton(this.game, 'Spawn Tank', 'nokia', 12, 400, 370, 'button', function() {
         this._addUnit();
       },
       this, 0, 1, 2);

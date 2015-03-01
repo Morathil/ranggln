@@ -14,6 +14,11 @@ var publicMethods = function() {
         this.game.state.start(StateIds.SETTINGS_STATE_ID);
       },
       this, 0, 1, 2);
+
+    new TextButton(this.game, 'Play', 'nokia', 12, 400, 370, 'button', function() {
+        this.game.state.start(StateIds.LOADING_STATE_ID);
+      },
+      this, 0, 1, 2);
   };
 
   this.resize = function() {
