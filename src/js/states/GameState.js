@@ -39,14 +39,14 @@ var publicMethods = function() {
   };
 
   this.update = function() {
-    if (this.game.input.activePointer.isDown) {
+    /*    if (this.game.input.activePointer.isDown) {
       if (this._doDragToMove) {
         this.line.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
       }
-    }
+    }*/
     for (var i = 0; i < this._units.length; i++) {
       var unit = this._units[i];
-      unit.move();
+      unit.update();
     }
   };
 };
