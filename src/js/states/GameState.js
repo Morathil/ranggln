@@ -1,11 +1,13 @@
 "use strict";
 
 var StateIds = require("./States");
-
 var TextButton = require("./../utils/TextButton");
 
 var TankUnit = require("./../units/TankUnit");
 var HelicopterUnit = require("./../units/HelicopterUnit");
+
+var MachineGunWeapon = require("./../weapons/MachineGunWeapon");
+
 
 var GameState = function(game) {
   this.background_01 = null;
@@ -30,6 +32,18 @@ var publicMethods = function() {
         this._addUnit();
       },
       this, 0, 1, 2);
+
+    // MachineGun Demo
+    //this.mg = new MachineGunWeapon(this.game);
+    //this.game.input.onDown.add(function(pointer) {pointer.type = 0;this.mg.shoot(pointer, {position: new Phaser.Point(0,0)}, function() {});}, this);
+  };
+
+  this.update = function() {
+
+  };
+
+  this.render = function() {
+
   };
 
   this.resize = function() {

@@ -2,7 +2,11 @@
 
 var UnitTypes = require("./../units/Types");
 
-var BaseWeapon = function() {
+var BaseWeapon = function(game) {
+  privateMethods.call(this);
+  publicMethods.call(this);
+  this.game = game;
+
   // TODO (DM): probably move to specific units if different magazines for
   // the same weapon exist
   this._magazines = 0;
@@ -13,43 +17,48 @@ var BaseWeapon = function() {
   this._roundsPerMinute = 0;
   this._reloadTime = 0;
   this._accuracy = 0;
+  this._projectileVelocity = new Phaser.Point(0.0, 0.0);
 
   this._rangeGround = 0;
   this._rangeAir = 0;
 }
 
 var publicMethods = function() {
-  this.releaod = function(callback) {
-    if (magazine > 0)
+  this.reload = function(callback) {
+    if (this._magazines > 0)
     {
       setTimeout(function() {
-        --this._magzine;
+        --this._magzines;
         this._rounds = this._magazineSize;
         callback(true);
       }, this._reloadTime);
     }
-    callack(false); // false means that the magazines are empty
-  };
-
-  this.shoot = function(enemy, shooter, callback) {
-    if(enemy.position.distance(shooter.position) <= range &&
-       (enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
-        enemy.type == UnitTypes.AIR && this._rangeAir > 0) &&
-       rounds > 0)
+    else
     {
+      callack(false); // false means that the magazines are empty
+    }
+  };
+  //this._shootProjectile = function() {console.log("fu");};
+  this.shoot = function(enemy, shooter, callback) {
+    var distance = Phaser.Point.distance(enemy.position, shooter.position);
+    if((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
+        distance <= this._rangeAir && enemy.type == UnitTypes.AIR && this._rangeAir > 0) &&
+       this._rounds > 0)
+    {
+      var that = this;
       setTimeout(function() {
-        // shoot sprite
-        --rounds;
+        that._shootProjectile(enemy.position, shooter.position);
+        --this._rounds;
         callback(true);
       }, 60000 / this._roundsPerMinute);
     }
-    callback(false); // == empty
+    else
+    {
+      callback(false); // == empty
+    }
   };
 };
 
 var privateMethods = function() {};
-
-privateMethods.call(BaseWeapon.prototype);
-publicMethods.call(BaseWeapon.prototype);
 
 module.exports = BaseWeapon;

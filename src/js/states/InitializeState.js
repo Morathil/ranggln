@@ -10,6 +10,7 @@ var publicMethods = function() {
     this.game.load.spritesheet('button', '../img/flixel-button.png', 80, 20);
     this.game.load.image('einstein', '../img/logo.png');
     this.game.load.bitmapFont('nokia', '../img/fonts/nokia.png', '../img/fonts/nokia.xml');
+    this.game.load.image('machineGunProjectile', '../img/machine-gun-projectile.png');
   };
 
   this.create = function() {
