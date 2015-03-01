@@ -2,13 +2,16 @@
 
 var StateIds = require("./States");
 
+var TextButton = require("./../utils/TextButton");
+
 var MenuState = function(game) {}
 
 var publicMethods = function() {
   this.create = function() {
     this.game.add.sprite(100, 100, 'einstein');
-    this.game.add.button(400, 400, 'button', function() {
-        this.game.state.start(StateIds.LOADING_STATE_ID);
+
+    new TextButton(this.game, 'Settings', 'nokia', 12, 400, 400, 'button', function() {
+        this.game.state.start(StateIds.SETTINGS_STATE_ID);
       },
       this, 0, 1, 2);
   };
