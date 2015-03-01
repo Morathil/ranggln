@@ -16,6 +16,10 @@ var publicMethods = function() {
       },
       this, 0, 1, 2);
   };
+
+  this.resize = function() {
+    Game.scale.setGameSize(window.innerWidth, window.innerHeight);
+  };
 };
 
 var privateMethods = function() {

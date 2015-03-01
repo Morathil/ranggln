@@ -3,9 +3,7 @@
 var MenuState = require("./MenuState");
 var StateIds = require("./States");
 
-var InitializeState = function(game) {
-  this.game = game;
-}
+var InitializeState = function(game) {}
 
 var publicMethods = function() {
   this.preload = function() {
@@ -14,9 +12,13 @@ var publicMethods = function() {
   };
 
   this.create = function() {
+    this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.game.state.start(StateIds.MENU_STATE_ID);
   };
 
+  this.resize = function() {
+    Game.scale.setGameSize(window.innerWidth, window.innerHeight);
+  };
 };
 
 var privateMethods = function() {};

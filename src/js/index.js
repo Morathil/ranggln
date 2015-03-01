@@ -9,12 +9,9 @@ var SettingsState = require("./states/SettingsState");
 var LoadingState = require("./states/LoadingState");
 var GameState = require("./states/GameState")
 
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example');
+var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'phaser-example');
 
 window.Game = game;
-window.onresize = function() {
-  Game.scale.setGameSize(window.innerWidth, window.innerHeight);
-}
 
 game.state.add(StateIds.INITIALIZE_STATE_ID, new InitializeState(game), true);
 game.state.add(StateIds.MENU_STATE_ID, new MenuState(game));
