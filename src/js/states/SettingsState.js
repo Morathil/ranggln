@@ -2,6 +2,8 @@
 
 var StateIds = require("./States");
 
+var TextButton = require("./../utils/TextButton");
+
 var SettingsSate = function(game) {}
 
 var publicMethods = function() {
@@ -10,8 +12,7 @@ var publicMethods = function() {
   };
 
   this.create = function() {
-    this.game.add.button(400, 400, 'button',
-      function() {
+    new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
       this, 0, 1, 2);
@@ -22,9 +23,7 @@ var publicMethods = function() {
   };
 };
 
-var privateMethods = function() {
-
-};
+var privateMethods = function() {};
 
 publicMethods.call(SettingsSate.prototype);
 publicMethods.call(SettingsSate.prototype);

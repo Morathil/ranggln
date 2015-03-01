@@ -14,7 +14,7 @@ var publicMethods = function() {
 
     this._resizeBackground();
 
-    this.game.add.button(400, 400, 'button', function() {
+    new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
       this, 0, 1, 2);

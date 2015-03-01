@@ -1,6 +1,7 @@
 "use strict";
 
 var LocalStorageUtils = require("./utils/LocalStorageUtils");
+
 var StateIds = require("./states/States");
 
 var InitializeState = require("./states/InitializeState");
