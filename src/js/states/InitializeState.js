@@ -14,7 +14,8 @@ var publicMethods = function() {
 
   this.create = function() {
     this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    this.game.state.start(StateIds.MENU_STATE_ID);
+    // this.game.state.start(StateIds.MENU_STATE_ID);
+    this.game.state.start(StateIds.LOADING_STATE_ID);
   };
 
   this.resize = function() {

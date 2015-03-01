@@ -42,7 +42,7 @@ var publicMethods = function() {
     var that = this;
     setTimeout(function() {
       that.game.state.start(StateIds.GAME_STATE_ID);
-    }, 500);
+    }, 1 /*500*/ );
   }
 
   this.update = function() {
