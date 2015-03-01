@@ -9,7 +9,6 @@ var TankUnit = require("./../units/TankUnit");
 var GameState = function(game) {
   this.background_01 = null;
   this.background_02 = null;
-  this._doDragToMove = false;
   this._units = [];
 }
 
@@ -21,7 +20,6 @@ var publicMethods = function() {
 
     this._resizeBackground();
 
-    this.line = new Phaser.Line(0, 0, 0, 0);
     new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
@@ -39,14 +37,16 @@ var publicMethods = function() {
   };
 
   this.update = function() {
-    /*    if (this.game.input.activePointer.isDown) {
-      if (this._doDragToMove) {
-        this.line.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
-      }
-    }*/
     for (var i = 0; i < this._units.length; i++) {
       var unit = this._units[i];
       unit.update();
+    }
+  };
+
+  this.render = function() {
+    for (var i = 0; i < this._units.length; i++) {
+      var unit = this._units[i];
+      unit.render();
     }
   };
 };

@@ -10,12 +10,28 @@ var BaseUnit = function(game) {
   this._initAttributes();
   this._baseSprite = this._initBaseSprite();
   this._weaponSprite = this._initWeaponSprite();
+
+  this._doDragToMove = false;
 }
 
 var publicMethods = function() {
   this.update = function() {
     this._move();
     this._updateWeaponPosition();
+
+    if (this.game.input.activePointer.isDown) {
+      if (this._doDragToMove) {
+        this._dragToMoveLine.start.set(this._baseSprite.x, this._baseSprite.y);
+        this._dragToMoveLine.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
+      }
+    }
+  };
+
+  this.render = function() {
+    this.game.debug.geom(this._dragToMoveLine);
+    this.game.debug.lineInfo(this._dragToMoveLine, 32, 32);
+
+    this.game.debug.text("Drag the handles", 32, 550);
   };
 };
 
@@ -37,6 +53,8 @@ var privateMethods = function() {
     var x = 0;
     var y = this.game.height * 0.81;
     var tank = this.game.add.sprite(x, y, 'tank');
+
+    this._dragToMoveLine = new Phaser.Line(0, 0, 0, 0);
 
     this._initAcradePhysics(tank);
     this._addInputListener(tank);
@@ -65,10 +83,15 @@ var privateMethods = function() {
   };
 
   this._onInputDown = function(sprite, pointer) {
-
+    this._doDragToMove = true;
+    this._dragToMoveLine.start.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
+    this._dragToMoveLine.end.set(this.game.input.activePointer.x, this.game.input.activePointer.y);
   };
 
   this._onInputUp = function(sprite, pointer) {
+    this._dragToMoveLine.start.set(0, 0);
+    this._dragToMoveLine.end.set(0, 0);
+    this._doDragToMove = false;
     this._moveToX = pointer.clientX;
     this._moveToY = pointer.clientY;
   };
