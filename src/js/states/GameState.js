@@ -2,6 +2,8 @@
 
 var StateIds = require("./States");
 
+var TankUnit = require("./../units/TankUnit");
+
 var GameState = function(game) {
   this.background_01 = null;
   this.background_02 = null;
@@ -18,6 +20,11 @@ var publicMethods = function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
       this, 0, 1, 2);
+
+    this.game.add.button(100, 100, 'button', function() {
+        this._addUnit();
+      },
+      this, 0, 1, 2);
   };
 
   this.resize = function() {
@@ -27,6 +34,15 @@ var publicMethods = function() {
 };
 
 var privateMethods = function() {
+  this._addUnit = function() {
+    console.log(new TankUnit());
+    var tank = this.game.add.group();
+    tank.x = 0;
+    tank.y = this.game.height * 0.81;
+    tank.create(0, 0, 'tank');
+    tank.create(10, 10, 'turret');
+  };
+
   this._resizeBackground = function() {
     this.background_01.width = this.game.width;
     this.background_01.height = this.game.height;
