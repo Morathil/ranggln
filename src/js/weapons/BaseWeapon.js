@@ -3,6 +3,9 @@
 var UnitTypes = require("./../units/Types");
 
 var BaseWeapon = function() {
+  privateMethods.call(BaseWeapon.prototype);
+  publicMethods.call(BaseWeapon.prototype);
+
   // TODO (DM): probably move to specific units if different magazines for
   // the same weapon exist
   this._magazines = 0;
@@ -13,17 +16,18 @@ var BaseWeapon = function() {
   this._roundsPerMinute = 0;
   this._reloadTime = 0;
   this._accuracy = 0;
+  this._projectileVelocity = Phaser.Point(0.0, 0.0);
 
   this._rangeGround = 0;
   this._rangeAir = 0;
 }
 
 var publicMethods = function() {
-  this.releaod = function(callback) {
-    if (magazine > 0)
+  this.reload = function(callback) {
+    if (this._magazines > 0)
     {
       setTimeout(function() {
-        --this._magzine;
+        --this._magzines;
         this._rounds = this._magazineSize;
         callback(true);
       }, this._reloadTime);
@@ -48,8 +52,5 @@ var publicMethods = function() {
 };
 
 var privateMethods = function() {};
-
-privateMethods.call(BaseWeapon.prototype);
-publicMethods.call(BaseWeapon.prototype);
 
 module.exports = BaseWeapon;
