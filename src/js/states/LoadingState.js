@@ -9,8 +9,8 @@ var publicMethods = function() {
   var sprite;
 
   this.preload = function() {
-    // var test = this.game.load.spritesheet('asdf', 'img/button-round.png', 128, 64);
-
+    this.game.load.image('background_01', 'img/background_01.png');
+    this.game.load.image('background_02', 'img/background_02.png');
     //  From http://glslsandbox.com/e#16133.0
     var fragmentSrc = [
       "precision mediump float;",
