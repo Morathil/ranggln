@@ -26,17 +26,17 @@ var publicMethods = function() {
 
     this._resizeBackground();
 
-    new TextButton(this.game, 'Menu', 'nokia', 12, 400, 400, 'button', function() {
+    new TextButton(this.game, 'Menu', 'nokia', 12, 100, 400, 'button', function() {
         this.game.state.start(StateIds.MENU_STATE_ID);
       },
       this, 0, 1, 2);
 
-    new TextButton(this.game, 'Tank', 'nokia', 12, 400, 370, 'button', function() {
+    new TextButton(this.game, 'Tank', 'nokia', 12, 100, 370, 'button', function() {
         this._addUnit("tank");
       },
       this, 0, 1, 2);
 
-    new TextButton(this.game, 'Helicopter', 'nokia', 12, 400, 340, 'button', function() {
+    new TextButton(this.game, 'Helicopter', 'nokia', 12, 100, 340, 'button', function() {
         this._addUnit("helicopter");
       },
       this, 0, 1, 2);
