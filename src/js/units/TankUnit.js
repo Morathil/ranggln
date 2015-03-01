@@ -1,10 +1,12 @@
 "use strict";
 
 var BaseUnit = require("./BaseUnit");
+var Types = require("./Types");
 
 var TankUnit = function(game) {
-  this.game = game;
   BaseUnit.call(this, game);
+  this.game = game;
+  this.type = Types.GROUND;
 }
 
 var publicMethods = function() {};
