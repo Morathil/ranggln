@@ -23,7 +23,8 @@ var privateMethods = function() {
     var projectile = this.game.add.sprite(shooterPosition.x, shooterPosition.y, 'machineGunProjectile');
     projectile.rotation = angle - Math.PI / 2;
     this.game.physics.enable(projectile, Phaser.Physics.ARCADE);
-    projectile.body.velocity.setTo(targetPosition.x, targetPosition.y);
+    var direction = Phaser.Point.subtract(targetPosition, shooterPosition);
+    projectile.body.velocity.setTo(direction.x, direction.y);
   };
 };
 

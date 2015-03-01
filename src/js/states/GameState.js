@@ -68,7 +68,7 @@ var publicMethods = function() {
 
 var privateMethods = function() {
   this._addUnit = function() {
-    this._units.push(new HelicopterUnit(this.game));
+    this._units.push(new TankUnit(this.game));
   };
 
   this._resizeBackground = function() {
