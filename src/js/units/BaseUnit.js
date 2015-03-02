@@ -14,9 +14,10 @@ var publicMethods = function() {
     this._doDragToMove = false;
   };
 
-  this.update = function() {
+  this.update = function(enemies) {
     this._move();
     this._updateWeaponPosition();
+    this._lookForEnemiesWithinWeaponRange(enemies);
     this._drawDragToMoveLine();
   };
 
@@ -48,7 +49,7 @@ var privateMethods = function() {
 
     sprite.body.enable = true;
     sprite.body.allowRotation = false;
-    sprite.body.collideWorldBounds = true;;
+    sprite.body.collideWorldBounds = true;
   };
 
   this._addInputListener = function(sprite) {

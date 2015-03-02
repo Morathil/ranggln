@@ -13,6 +13,9 @@ var GameState = function(game) {
   this.background_01 = null;
   this.background_02 = null;
   this._units = [];
+  this._enemies = [];
+
+  this._tmpFlag = false;
 }
 
 var publicMethods = function() {
@@ -50,7 +53,7 @@ var publicMethods = function() {
   this.update = function() {
     for (var i = 0; i < this._units.length; i++) {
       var unit = this._units[i];
-      unit.update();
+      unit.update(this._enemies);
     }
     this.game.physics.arcade.collide(this._collisionGroupTanks);
     this.game.physics.arcade.collide(this._collisionGroupHelicopters);
@@ -70,16 +73,26 @@ var privateMethods = function() {
     switch (type) {
       case "tank":
         unit = new TankUnit(this.game);
-        this._units.push(unit);
+        if (this._tmpFlag) {
+          this._enemies.push(unit);
+        } else {
+          this._units.push(unit);
+        }
         this._collisionGroupTanks.add(unit._baseSprite)
         break;
 
       case "helicopter":
         unit = new HelicopterUnit(this.game);
-        this._units.push(unit);
+        if (this._tmpFlag) {
+          this._enemies.push(unit);
+        } else {
+          this._units.push(unit);
+        }
         this._collisionGroupHelicopters.add(unit._baseSprite)
         break;
     }
+
+    this._tmpFlag = !this._tmpFlag;
   };
 
   this._resizeBackground = function() {

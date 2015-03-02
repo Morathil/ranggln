@@ -17,13 +17,6 @@ var publicMethods = function() {};
 var privateMethods = function() {
   this._initMachineGunWeapon = function() {
     this._machineGunWeapon = new MachineGunWeapon(this.game);
-    this.game.input.onDown.add(
-      function(pointer) {
-        pointer.type = 0;
-        this._machineGunWeapon.shoot(pointer, {
-          position: this._weaponSprite.position
-        }, function() {});
-      }, this);
   };
 
   this._initAttributes = function() {
@@ -33,7 +26,7 @@ var privateMethods = function() {
     this._size = 0;
     this._ecm = 0;
     this._optics = 0;
-    this._speed = 100;
+    this._speed = 200;
     this._stealth = 0;
     this._fuel = 0;
     this.type = Types.INVALID;
@@ -64,6 +57,19 @@ var privateMethods = function() {
     this._weaponSprite.x = this._baseSprite.x + 30;
     this._weaponSprite.y = this._baseSprite.y + 15;
     this._weaponSprite.rotation = this._baseSprite.rotation;
+  };
+
+  this._lookForEnemiesWithinWeaponRange = function(enemies) {
+    var enemiesInRange = this._machineGunWeapon.lookForEnemiesWithinWeaponRange(enemies, this._baseSprite);
+    var firstEnemyInRange = enemiesInRange[0];
+    if (firstEnemyInRange) {
+      this._machineGunWeapon.shoot({
+        position: firstEnemyInRange.position,
+        type: 0
+      }, {
+        position: this._weaponSprite.position
+      }, function() {});
+    }
   };
 };
 

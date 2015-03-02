@@ -25,37 +25,47 @@ var BaseWeapon = function(game) {
 
 var publicMethods = function() {
   this.reload = function(callback) {
-    if (this._magazines > 0)
-    {
+    if (this._magazines > 0) {
       setTimeout(function() {
         --this._magzines;
         this._rounds = this._magazineSize;
         callback(true);
       }, this._reloadTime);
-    }
-    else
-    {
+    } else {
       callack(false); // false means that the magazines are empty
     }
   };
 
   this.shoot = function(enemy, shooter, callback) {
     var distance = Phaser.Point.distance(enemy.position, shooter.position);
-    if((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
+    if ((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
         distance <= this._rangeAir && enemy.type == UnitTypes.AIR && this._rangeAir > 0) &&
-       this._rounds > 0)
-    {
+      this._rounds > 0) {
       var that = this;
       setTimeout(function() {
         that._shootProjectile(enemy.position, shooter.position);
         callback(true);
       }, 60000 / this._roundsPerMinute);
       --this._rounds;
-    }
-    else
-    {
+    } else {
       callback(false); // == empty
     }
+  };
+
+  this.lookForEnemiesWithinWeaponRange = function(enemies, shooter) {
+    var enemiesInRange = [];
+    var enemy
+    for (var i = 0; i < enemies.length; i++) {
+      var enemy = enemies[i]._baseSprite;
+      var distance = Phaser.Point.distance(enemy.position, shooter.position);
+      if ((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
+          distance <= this._rangeAir && enemy.type == UnitTypes.AIR && this._rangeAir > 0) &&
+        this._rounds > 0) {
+        enemiesInRange.push(enemy)
+      };
+    }
+
+    return enemiesInRange;
   };
 };
 
