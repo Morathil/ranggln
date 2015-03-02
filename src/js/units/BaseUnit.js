@@ -72,7 +72,7 @@ var privateMethods = function() {
   };
 
   this._move = function() {
-    if (Math.abs(Math.round(this._moveToX - this._baseSprite.x)) <= 0 && Math.abs(Math.round(this._moveToY - this._baseSprite.y)) <= 0) {
+    if (Math.abs(Math.round(this._moveToX - this._baseSprite.x)) <= 5 && Math.abs(Math.round(this._moveToY - this._baseSprite.y)) <= 5) {
       this._baseSprite.body.velocity.x = 0;
       this._baseSprite.body.velocity.y = 0;
       this._moveToX = null;
