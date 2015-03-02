@@ -10,7 +10,6 @@ var BaseWeapon = function(game) {
   // TODO (DM): probably move to specific units if different magazines for
   // the same weapon exist
   this._magazines = 0;
-  this._magazineCount = 0;
   this._magazineSize = 0;
 
   this._rounds = 0;
@@ -21,16 +20,21 @@ var BaseWeapon = function(game) {
 
   this._rangeGround = 0;
   this._rangeAir = 0;
+  this._isReloading = false;
+
+  this._projectileImage = '';
 }
 
 var publicMethods = function() {
   this.reload = function(callback) {
     if (this._magazines > 0)
     {
+      this._isReloading = true;
       setTimeout(function() {
         --this._magzines;
         this._rounds = this._magazineSize;
         callback(true);
+        this._isReloading = false;
       }, this._reloadTime);
     }
     else
@@ -43,7 +47,7 @@ var publicMethods = function() {
     var distance = Phaser.Point.distance(enemy.position, shooter.position);
     if((distance <= this._rangeGround && enemy.type == UnitTypes.GROUND && this._rangeGround > 0 ||
         distance <= this._rangeAir && enemy.type == UnitTypes.AIR && this._rangeAir > 0) &&
-       this._rounds > 0)
+       this._rounds > 0 && !this._isReloading)
     {
       var that = this;
       setTimeout(function() {
@@ -59,6 +63,22 @@ var publicMethods = function() {
   };
 };
 
-var privateMethods = function() {};
+var privateMethods = function() {
+  this._shootProjectile = function(targetPosition, shooterPosition) {
+    var projectile = this.game.add.sprite(shooterPosition.x, shooterPosition.y, this._projectileImage);
+    projectile.checkWorldBounds = true;
+    projectile.outOfBoundsKill = true;
+
+    var angle = Phaser.Point.angle(shooterPosition, targetPosition);
+    projectile.rotation = angle - Math.PI / 2;
+
+    this.game.physics.enable(projectile, Phaser.Physics.ARCADE);
+
+    var direction = Phaser.Point.subtract(targetPosition, shooterPosition);
+    direction.normalize();
+    direction.multiply(this._projectileSpeed, this._projectileSpeed);
+    projectile.body.velocity.setTo(direction.x, direction.y);
+  };
+};
 
 module.exports = BaseWeapon;

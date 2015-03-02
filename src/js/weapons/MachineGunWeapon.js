@@ -13,27 +13,13 @@ var MachineGunWeapon = function(game) {
 
   this._rangeGround = 1000;
   this._rangeAir = 1000;
+
+  this._projectileImage = 'machineGunProjectile';
 }
 
 var publicMethods = function() {};
 
-var privateMethods = function() {
-  this._shootProjectile = function(targetPosition, shooterPosition) {
-    var projectile = this.game.add.sprite(shooterPosition.x, shooterPosition.y, 'machineGunProjectile');
-    projectile.checkWorldBounds = true;
-    projectile.outOfBoundsKill = true;
-
-    var angle = Phaser.Point.angle(shooterPosition, targetPosition);
-    projectile.rotation = angle - Math.PI / 2;
-
-    this.game.physics.enable(projectile, Phaser.Physics.ARCADE);
-
-    var direction = Phaser.Point.subtract(targetPosition, shooterPosition);
-    direction.normalize();
-    direction.multiply(this._projectileSpeed, this._projectileSpeed);
-    projectile.body.velocity.setTo(direction.x, direction.y);
-  };
-};
+var privateMethods = function() {};
 
 privateMethods.call(MachineGunWeapon.prototype);
 publicMethods.call(MachineGunWeapon.prototype);
