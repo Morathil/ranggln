@@ -63,13 +63,18 @@ var privateMethods = function() {
   this._lookForEnemiesWithinWeaponRange = function(enemies) {
     var enemiesInRange = this._machineGunWeapon.lookForEnemiesWithinWeaponRange(enemies, this._baseSprite);
     var firstEnemyInRange = enemiesInRange[0];
+    var that = this;
     if (firstEnemyInRange) {
       this._machineGunWeapon.shoot({
         position: firstEnemyInRange.position,
         type: 0
       }, {
         position: this._weaponSprite.position
-      }, function() {});
+      }, function(hasAmmuniation) {
+        if (!hasAmmuniation) {
+          that._machineGunWeapon.reload()
+        }
+      });
     }
   };
 };

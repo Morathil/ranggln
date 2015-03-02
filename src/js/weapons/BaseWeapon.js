@@ -27,16 +27,17 @@ var BaseWeapon = function(game) {
 
 var publicMethods = function() {
   this.reload = function(callback) {
-    if (this._magazines > 0) {
+    callback = callback || function() {};
+    if (this._magazines > 0 && !this._isReloading) {
       this._isReloading = true;
       setTimeout(function() {
         --this._magzines;
         this._rounds = this._magazineSize;
-        callback(true);
         this._isReloading = false;
+        callback(true);
       }, this._reloadTime);
     } else {
-      callack(false); // false means that the magazines are empty
+      callback(false); // false means that the magazines are empty
     }
   };
 

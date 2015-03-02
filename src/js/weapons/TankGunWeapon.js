@@ -6,9 +6,9 @@ var TankGunWeapon = function(game) {
   BaseWeapon.call(this, game);
 
   this._magazines = 28;
-  this._magazineSize = 1;
+  this._magazineSize = 5;
 
-  this._rounds = 1;
+  this._rounds = 5;
   this._roundsPerMinute = 1000;
   this._reloadTime = 8000;
   this._accuracy = 0;
