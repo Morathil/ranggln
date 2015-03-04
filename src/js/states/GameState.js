@@ -55,6 +55,12 @@ var publicMethods = function() {
       var unit = this._units[i];
       unit.update(this._enemies);
     }
+
+    for (var i = 0; i < this._enemies.length; i++) {
+      var enemy = this._enemies[i];
+      enemy.update(this._units);
+    }
+
     this.game.physics.arcade.collide(this._collisionGroupTanks);
     this.game.physics.arcade.collide(this._collisionGroupHelicopters);
   };
@@ -63,6 +69,11 @@ var publicMethods = function() {
     for (var i = 0; i < this._units.length; i++) {
       var unit = this._units[i];
       unit.render();
+    }
+
+    for (var i = 0; i < this._enemies.length; i++) {
+      var enemy = this._enemies[i];
+      enemy.render();
     }
   };
 };
