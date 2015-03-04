@@ -65,6 +65,7 @@ var privateMethods = function() {
     var firstEnemyInRange = enemiesInRange[0];
     var that = this;
     if (firstEnemyInRange) {
+      this._weaponSprite.rotation = this.game.physics.arcade.angleToXY(this._weaponSprite, firstEnemyInRange.position.x, firstEnemyInRange.position.y);
       this._machineGunWeapon.shoot({
         position: firstEnemyInRange.position,
         type: 0

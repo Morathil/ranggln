@@ -42,6 +42,10 @@ var privateMethods = function() {
     // IMPLEMENT IN SUB CLASS
   };
 
+  this._lookForEnemiesWithinWeaponRange = function(enemies) {
+    // IMPLEMENT IN SUB CLASS
+  };
+
   this._initAcradePhysics = function(sprite) {
     this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
