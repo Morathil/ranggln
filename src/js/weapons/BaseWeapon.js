@@ -2,30 +2,6 @@
 
 var UnitTypes = require("./../units/Types");
 
-var BaseWeapon = function(game) {
-  privateMethods.call(this);
-  publicMethods.call(this);
-  this.game = game;
-
-  // TODO (DM): probably move to specific units if different magazines for
-  // the same weapon exist
-  this._magazines = 0;
-  this._magazineSize = 0;
-
-  this._rounds = 0;
-  this._roundsPerMinute = 0;
-  this._reloadTime = 0;
-  this._accuracy = 0;
-  this._projectileSpeed = 0;
-  this._isShooting = false;
-
-  this._rangeGround = 0;
-  this._rangeAir = 0;
-  this._isReloading = false;
-
-  this._projectileImage = '';
-}
-
 var publicMethods = function() {
 
   this.reload = function(callback) {
@@ -85,6 +61,28 @@ var publicMethods = function() {
 };
 
 var privateMethods = function() {
+  this._initSuper = function(game) {
+    this.game = game;
+
+    // TODO (DM): probably move to specific units if different magazines for
+    // the same weapon exist
+    this._magazines = 0;
+    this._magazineSize = 0;
+
+    this._rounds = 0;
+    this._roundsPerMinute = 0;
+    this._reloadTime = 0;
+    this._accuracy = 0;
+    this._projectileSpeed = 0;
+    this._isShooting = false;
+
+    this._rangeGround = 0;
+    this._rangeAir = 0;
+    this._isReloading = false;
+
+    this._projectileImage = '';
+  };
+
   this._shootProjectile = function(targetPosition, shooterPosition) {
     var projectile = this.game.add.sprite(shooterPosition.x, shooterPosition.y, this._projectileImage);
     projectile.checkWorldBounds = true;
@@ -102,4 +100,7 @@ var privateMethods = function() {
   };
 };
 
-module.exports = BaseWeapon;
+module.exports = {
+  privateMethods: privateMethods,
+  publicMethods: publicMethods
+}

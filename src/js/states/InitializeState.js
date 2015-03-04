@@ -12,6 +12,7 @@ var publicMethods = function() {
     this.game.load.bitmapFont('nokia', 'img/fonts/nokia.png', 'img/fonts/nokia.xml');
     this.game.load.image('machineGunProjectile', 'img/machine-gun-projectile.png');
     this.game.load.image('tankGunProjectile', 'img/tank-gun-projectile.png');
+    this.game.load.image('rocketLauncherProjectile', 'img/rocket-launcher-projectile.png');
   };
 
   this.create = function() {

@@ -3,7 +3,7 @@
 var BaseWeapon = require("./BaseWeapon");
 
 var MachineGunWeapon = function(game) {
-  BaseWeapon.call(this, game);
+  this._initSuper(game);
 
   this._rounds = 1000000;
   this._roundsPerMinute = 1000;
@@ -20,6 +20,9 @@ var MachineGunWeapon = function(game) {
 var publicMethods = function() {};
 
 var privateMethods = function() {};
+
+BaseWeapon.privateMethods.call(MachineGunWeapon.prototype);
+BaseWeapon.publicMethods.call(MachineGunWeapon.prototype);
 
 privateMethods.call(MachineGunWeapon.prototype);
 publicMethods.call(MachineGunWeapon.prototype);

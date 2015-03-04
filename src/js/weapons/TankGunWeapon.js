@@ -3,7 +3,7 @@
 var BaseWeapon = require("./BaseWeapon");
 
 var TankGunWeapon = function(game) {
-  BaseWeapon.call(this, game);
+  this._initSuper(game);
 
   this._magazines = 28;
   this._magazineSize = 5;
@@ -23,6 +23,9 @@ var TankGunWeapon = function(game) {
 var publicMethods = function() {};
 
 var privateMethods = function() {};
+
+BaseWeapon.privateMethods.call(TankGunWeapon.prototype);
+BaseWeapon.publicMethods.call(TankGunWeapon.prototype);
 
 privateMethods.call(TankGunWeapon.prototype);
 publicMethods.call(TankGunWeapon.prototype);

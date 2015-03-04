@@ -5,6 +5,7 @@ var Types = require("./Types");
 
 var MachineGunWeapon = require("./../weapons/MachineGunWeapon");
 var TankGunWeapon = require("./../weapons/TankGunWeapon");
+var RocketLauncherWeapon = require("./../weapons/RocketLauncherWeapon");
 
 var TankUnit = function(game) {
   this.initSuper(game);
@@ -17,7 +18,7 @@ var publicMethods = function() {};
 
 var privateMethods = function() {
   this._initMachineGunWeapon = function() {
-    this._machineGunWeapon = new TankGunWeapon(this.game);
+    this._machineGunWeapon = new RocketLauncherWeapon(this.game);
   };
 
   this._initAttributes = function() {
