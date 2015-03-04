@@ -9,7 +9,7 @@ var TankGunWeapon = function(game) {
   this._magazineSize = 5;
 
   this._rounds = 5;
-  this._roundsPerMinute = 1000;
+  this._roundsPerMinute = 10;
   this._reloadTime = 8000;
   this._accuracy = 0;
   this._projectileSpeed = 1000;

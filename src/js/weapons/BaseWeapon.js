@@ -17,6 +17,7 @@ var BaseWeapon = function(game) {
   this._reloadTime = 0;
   this._accuracy = 0;
   this._projectileSpeed = 0;
+  this._isShooting = false;
 
   this._rangeGround = 0;
   this._rangeAir = 0;
@@ -26,14 +27,16 @@ var BaseWeapon = function(game) {
 }
 
 var publicMethods = function() {
+
   this.reload = function(callback) {
     callback = callback || function() {};
     if (this._magazines > 0 && !this._isReloading) {
+      var that = this;
       this._isReloading = true;
       setTimeout(function() {
-        --this._magzines;
-        this._rounds = this._magazineSize;
-        this._isReloading = false;
+        --that._magazines;
+        that._rounds = that._magazineSize;
+        that._isReloading = false;
         callback(true);
       }, this._reloadTime);
     } else {
@@ -42,16 +45,24 @@ var publicMethods = function() {
   };
 
   this.shoot = function(enemy, shooter, callback) {
-    var distance = Phaser.Point.distance(enemy.position, shooter.position);
-    if (this._rounds > 0 && !this._isReloading) {
-      var that = this;
-      setTimeout(function() {
+    if(!this._isShooting && !this._isReloading)
+    {
+      if (this._rounds > 0) {
+        this._isShooting = true;
+        var that = this;
+        var distance = Phaser.Point.distance(enemy.position, shooter.position);
+
         that._shootProjectile(enemy.position, shooter.position);
+        --this._rounds;
+
+        setTimeout(function() {
+          that._isShooting = false;
+        }, 60000 / this._roundsPerMinute);
+
         callback(true);
-      }, 60000 / this._roundsPerMinute);
-      --this._rounds;
-    } else {
-      callback(false); // == empty
+      } else {
+        callback(false); // == empty
+      }
     }
   };
 
